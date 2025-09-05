@@ -23,6 +23,7 @@ interface Dealer {
   preferred: boolean;
   fees: any;
   schedules: any;
+  labels: Array<string>;
 }
 
 export interface DealerCardProps {
