@@ -4,6 +4,7 @@ export const handleSelect = (dealer: any, selectDealer: any) => {
   const formattedDealerPhoneNumber = formatPhoneNumber({ phoneNumber: dealer.phone_number });
 
   selectDealer({
+    id: dealer.id,
     firstName: dealer.business_name,
     lastName: dealer.license,
     phone: formattedDealerPhoneNumber,

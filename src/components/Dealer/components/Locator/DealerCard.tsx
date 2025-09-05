@@ -24,9 +24,9 @@ export default function DealerCard(props: DealerCardProps): JSX.Element {
   const formattedDealerPhoneNumber = formatPhoneNumber({ phoneNumber: dealer.phone_number });
 
   return (
-    <div 
+    <div
       ref={cardRef}
-      onClick={() => handleActiveDealer(dealer)} 
+      onClick={() => handleActiveDealer(dealer)}
       className={`dealer-card${dealer.preferred?' preferred':''} scroll-mt-[120px] snap-center relative bg-white overflow-hidden m-6 border rounded-md transition-all duration-700 cursor-pointer hover:shadow-lg ${isActive?`active shadow-lg`:'shadow-sm'}`}
     >
       <div className={`absolute w-12 px-4 py-1 rounded-br-md mt-0 r-0 font-bold text-center text-lg text-white ${dealer.preferred?'bg-secondary':'bg-primary'}`}>{index + 1}</div>
@@ -40,7 +40,7 @@ export default function DealerCard(props: DealerCardProps): JSX.Element {
           <a href={`tel:${dealer.phone_number}`} className="text-blue-500 mt-1">{formattedDealerPhoneNumber}</a>
           <Fees fees={dealer.fees} />
           <Schedules schedules={dealer.schedules} />
-          {isActive && 
+          {isActive &&
             <div className='h-12 flex items-center justify-center overflow-hidden mt-4'>
               <button
                 className={`relative px-4 py-2 rounded block w-full ${dealer.preferred ? 'bg-secondary' : 'bg-primary hover:bg-hover'}`}
@@ -50,6 +50,20 @@ export default function DealerCard(props: DealerCardProps): JSX.Element {
               </button>
             </div>
           }
+          <div className='mt-1'>
+            {dealer.preferred &&
+              <span className="tag preferred">Preferred Dealer</span>
+            }
+            {dealer.labels.some(label => label === "top_choice") &&
+              <span className="tag top-choice">Top Choice</span>
+            }
+            {dealer.labels.some(label => label === "popular") &&
+              <span className="tag popular">Popular</span>
+            }
+            {dealer.labels.some(label => label === "recent_activity") &&
+              <span className="tag recent">Recent Activity</span>
+            }
+          </div>
         </div>
       </div>
     </div>
