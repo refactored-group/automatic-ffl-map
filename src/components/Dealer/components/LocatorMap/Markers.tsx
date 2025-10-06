@@ -19,7 +19,7 @@ const createSvgMarker = (dealer: DealerProps) => {
 
 const Markers = ({ dealers, prevDealersRef, state, setState, selectDealer, setActiveDealer, showMap }: MarkersProps) => {
   const map = useMap();
-  
+
   const fitMapToBounds = (map: google.maps.Map, dealers: DealerProps[], prevDealersRef: React.MutableRefObject<any[]>) => {
     const bounds = new google.maps.LatLngBounds();
     dealers.forEach(({ lat, lng }) => bounds.extend({ lat, lng }));
@@ -83,6 +83,7 @@ const Markers = ({ dealers, prevDealersRef, state, setState, selectDealer, setAc
           pixelOffset={[0, -38]}
           minWidth={250}
           maxWidth={280}
+          shouldFocus={false}
         >
           {state.activeDealer && (
             <div>
