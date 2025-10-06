@@ -56,6 +56,9 @@ export default class Locator extends React.PureComponent<LocatorProps, LocatorSt
 
   handleSearch(): void {
     const { location, radius } = this.state;
+    this.setState({
+      dealers: []
+    });
 
     if (location && radius) {
       this.setState({loading: true, currentLocation: location});
