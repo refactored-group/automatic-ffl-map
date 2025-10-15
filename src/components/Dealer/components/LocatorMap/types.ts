@@ -14,7 +14,8 @@ export interface MarkersProps {
   selectDealer: any;
   prevDealersRef: any;
   setActiveDealer: any;
-  showMap: any
+  showMap: any;
+  activeDealer: any;
 }
 
 export interface DealerProps {

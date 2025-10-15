@@ -17,7 +17,7 @@ const createSvgMarker = (dealer: DealerProps) => {
   };
 };
 
-const Markers = ({ dealers, prevDealersRef, state, setState, selectDealer, setActiveDealer, showMap }: MarkersProps) => {
+const Markers = ({ dealers, prevDealersRef, state, setState, selectDealer, setActiveDealer, showMap, activeDealer}: MarkersProps) => {
   const map = useMap();
 
   const fitMapToBounds = (map: google.maps.Map, dealers: DealerProps[], prevDealersRef: React.MutableRefObject<any[]>) => {
@@ -76,7 +76,7 @@ const Markers = ({ dealers, prevDealersRef, state, setState, selectDealer, setAc
         );
       })}
 
-      {state.showingInfoWindow && (
+      {state.showingInfoWindow && activeDealer != null && (
         <InfoWindow
           headerContent={<p className="font-bold">{state.activeDealer.business_name}</p>}
           position={{ lat: state.activeDealer.lat, lng: state.activeDealer.lng }}
