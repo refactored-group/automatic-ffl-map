@@ -49,6 +49,7 @@ const LocatorMap = ({ apiKey, dealers, selectDealer, setActiveDealer, activeDeal
           selectDealer={selectDealer}
           setActiveDealer={setActiveDealer}
           showMap={showMap}
+          activeDealer={activeDealer}
         />
       </Map>
     </APIProvider>
