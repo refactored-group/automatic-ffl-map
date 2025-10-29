@@ -59,7 +59,7 @@ export default function DealerCard(props: DealerCardProps): JSX.Element {
                 className={`relative px-4 py-2 rounded block w-full ${dealer.preferred ? 'bg-secondary' : 'bg-primary hover:bg-hover'}`}
                 onClick={(e) => { e.stopPropagation(); handleSelect(dealer, selectDealer); }}>
                 <span className={`absolute inset-0 rounded ${dealer.preferred ? 'bg-secondary' : 'bg-primary hover:bg-hover'}`}></span>
-                <span className="relative z-10 font-bold text-white">SELECT</span>
+                <span className="relative font-bold text-white">SELECT</span>
               </button>
             </div>
           }
