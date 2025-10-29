@@ -55,6 +55,7 @@ html, body {
     font-size: 10px;
     font-weight: 500;
     border: 1px solid transparent;
+    margin-right: 10px;
   }
 
   /* Different tag styles */
