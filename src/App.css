@@ -82,3 +82,17 @@ html, body {
     border: 1px solid #cccccc;
     color: #888888;
   }
+
+#searchTextBox {
+    @media (max-width: 299px) {
+        width: 50%;
+        }
+
+    @media (min-width: 300px) and (max-width: 359px) {
+        width: 70%;
+    }
+
+    @media (min-width: 360px) and (max-width: 370px) {
+        width: 80%;
+    }
+}

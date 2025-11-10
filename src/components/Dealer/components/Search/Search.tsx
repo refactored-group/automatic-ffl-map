@@ -19,6 +19,7 @@ const Search: React.FC<SearchProps> = ({ location, miles, onChangeLocation, onHa
                     placeholder="zip code, city, or FFL"
                     onKeyPress={ onHandleKeypress }
                     className="px-4 py-2 border border-r-0 rounded-l-full transition duration-300 outline-0 focus:ring-0 group-hover:border-hover"
+                    id="searchTextBox"
                 />
                 <div>
                     <select onChange={ onChangeRadius } className="h-full bg-white text-gray-500 font-bold outline-0 border-y transition duration-300 focus:ring-0 cursor-pointer hover:text-primary group-hover:border-hover">
