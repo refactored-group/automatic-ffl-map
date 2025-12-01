@@ -52,6 +52,9 @@ export default function DealerCard(props: DealerCardProps): JSX.Element {
             {dealer.labels.some(label => label === "recent_activity") &&
               <span className="tag recent">Recent Activity</span>
             }
+            {dealer.cert_on_file &&
+              <span className="tag recent">Cert on file</span>
+            }
           </div>
           {isActive &&
             <div className='h-12 flex items-center justify-center overflow-hidden mt-1'>
