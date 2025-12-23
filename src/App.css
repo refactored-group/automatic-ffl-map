@@ -83,6 +83,17 @@ html, body {
     color: #888888;
   }
 
+  .cert-on-file {
+    background-color: #dcfce7;
+    border: 1px solid #22c55e;
+    color: #22c55e;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    vertical-align: middle;
+  }
+
 #searchTextBox {
     @media (max-width: 299px) {
         width: 50%;
