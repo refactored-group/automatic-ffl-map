@@ -24,7 +24,7 @@ interface Dealer {
   fees: any;
   schedules: any;
   labels: Array<string>;
-  cert_on_file: boolean;
+  uuid?: string;
 }
 
 export interface DealerCardProps {
