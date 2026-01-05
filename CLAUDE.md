@@ -67,6 +67,18 @@ App → Locator → Header, Search, DealerList (→ DealerCard[]), DealerMap (�
 - Dealer search: `${REACT_APP_HOST}/store-front/api/${storeHash}/dealers?location=${location}&radius=${radius}`
 - BigCommerce: GraphQL Storefront API for cart/checkout operations
 
+### Critical: postMessage Dealer Data Structure
+
+This app runs as an iframe embedded in parent checkout apps. When a dealer is selected, `handleSelect` in `src/components/Dealer/components/LocatorMap/utils.ts` constructs the dealer object and sends it to the parent window via postMessage.
+
+**The `handleSelect` function manually maps dealer fields - it does not pass through the raw API response.** If the backend API adds new fields that parent apps need (e.g., `uuid` for certificate URLs), you MUST add them to `handleSelect`.
+
+Current fields sent to parent:
+- `id`, `firstName`, `lastName`, `phone`, `company`
+- `address1`, `address2`, `addressFormatted`, `city`, `stateOrProvinceCode`, `postalCode`
+- `countryCode`, `localizedCountry`, `shouldSaveAddress`
+- `fflID`, `uuid`
+
 ### Styling
 
 - Tailwind CSS with custom colors: primary (#4A276B), secondary (#f26b20), preferred (#f9a826)
