@@ -19,6 +19,7 @@ export const handleSelect = (dealer: any, selectDealer: any) => {
     localizedCountry: 'United States',
     countryCode: 'US',
     fflID: dealer.license,
+    uuid: dealer.uuid,
   });
 };
 
