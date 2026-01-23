@@ -15,8 +15,7 @@ export default function DealerCard(props: DealerCardProps): JSX.Element {
     if (isActive && cardRef.current) {
       cardRef.current.scrollIntoView({
         behavior: 'smooth',
-        block: 'start',
-        inline: 'start'
+        block: 'nearest'
       });
     }
   }, [isActive]);

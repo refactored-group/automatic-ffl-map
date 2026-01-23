@@ -7,9 +7,9 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ handleCancel }) => {
     return (
         <>
-            <div className="flex m-4">
-              { handleCancel && <button className="locator-button" onClick={ handleCancel }>
-                <img src="./icons/close.svg" alt="Automatic FFL" className="w-5 mx-auto" />
+            <div className="relative m-4">
+              { handleCancel && <button className="absolute top-0 left-0 locator-button" onClick={ handleCancel }>
+                <img src="./icons/close.svg" alt="Close" className="w-5" />
               </button>}
               <img src="./logo-automaticffl.png" alt="Automatic FFL" className="w-32 mx-auto" />
             </div>
