@@ -8,9 +8,6 @@ export interface DealerMapProps {
   setShowMap: (show: boolean) => void;
   dealersHeight: number;
   loading: boolean;
-  announcement: string;
-  showToast: boolean;
-  hideToast: () => void;
 }
 
 interface Dealer {

@@ -21,7 +21,6 @@ interface LocatorState {
   radius: any;
   miles: any;
   announcement: any;
-  showToast: any;
 }
 
 export default class Locator extends React.PureComponent<LocatorProps, LocatorState> {
@@ -38,7 +37,7 @@ export default class Locator extends React.PureComponent<LocatorProps, LocatorSt
       currentLocation: "",
       radius: 5,
       miles: [5, 10, 30, 75],
-      showToast: true,
+      announcement: "",
       activeDealer: null,
       showMap: false,
       dealersHeight: 0,
@@ -50,7 +49,6 @@ export default class Locator extends React.PureComponent<LocatorProps, LocatorSt
     this.onChangeLocation = this.onChangeLocation.bind(this);
     this.onChangeRadius = this.onChangeRadius.bind(this);
     this.onHandleKeypress = this.onHandleKeypress.bind(this);
-    this.hideToast = this.hideToast.bind(this);
     this.handleActiveDealer = this.handleActiveDealer.bind(this);
   }
 
@@ -100,12 +98,21 @@ export default class Locator extends React.PureComponent<LocatorProps, LocatorSt
     }
   }
 
-  hideToast(event: any): void {
-    this.setState({ showToast: false });
-  }
-
   componentDidMount() {
     this.handleSearch();
+    fetch(`${process.env.REACT_APP_HOST}/store-front/api/stores/${this.props.storeHash}`, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.announcement) {
+        this.setState({ announcement: data.announcement }, () => {
+          this.updateDealersHeight();
+        });
+      }
+    })
+    .catch(console.log);
     this.updateDealersHeight();
     window.addEventListener("resize", this.updateDealersHeight.bind(this));
   }
@@ -119,36 +126,40 @@ export default class Locator extends React.PureComponent<LocatorProps, LocatorSt
   render() {
     const { handleCancel, selectDealer } = this.props;
     return (
-      <div className={`flex h-screen bg-custom-gray relative overflow-hidden ${this.props.showLocator?'show-locator':''}`}>
-        <div className="w-full lg:w-1/3 flex flex-col">
-          <div>
-            <Header handleCancel={ handleCancel } />
-            <Search location={this.state.location} miles={this.state.miles} onChangeLocation={this.onChangeLocation} onHandleKeypress={this.onHandleKeypress} onChangeRadius={this.onChangeRadius} handleSearch={this.handleSearch}/>
+      <div className="flex flex-col h-screen">
+        {this.state.announcement && (
+          <div className="bg-secondary text-white text-center text-sm font-semibold py-2.5 px-4">
+            {this.state.announcement}
           </div>
-          <DealerList
-            dealersRef={this.dealersRef}
+        )}
+        <div className={`flex flex-1 bg-custom-gray relative overflow-hidden ${this.props.showLocator?'show-locator':''}`}>
+          <div className="w-full lg:w-1/3 flex flex-col">
+            <div>
+              <Header handleCancel={ handleCancel } />
+              <Search location={this.state.location} miles={this.state.miles} onChangeLocation={this.onChangeLocation} onHandleKeypress={this.onHandleKeypress} onChangeRadius={this.onChangeRadius} handleSearch={this.handleSearch}/>
+            </div>
+            <DealerList
+              dealersRef={this.dealersRef}
+              dealers={this.state.dealers}
+              loading={this.state.loading}
+              searched={this.state.searched}
+              currentLocation={this.state.currentLocation}
+              activeDealer={this.state.activeDealer}
+              handleActiveDealer={this.handleActiveDealer}
+              selectDealer={selectDealer}
+            />
+          </div>
+          <DealerMap
+            googleMapsApiKey={this.props.googleMapsApiKey}
             dealers={this.state.dealers}
-            loading={this.state.loading}
-            searched={this.state.searched}
-            currentLocation={this.state.currentLocation}
+            selectDealer={selectDealer}
             activeDealer={this.state.activeDealer}
             handleActiveDealer={this.handleActiveDealer}
-            selectDealer={selectDealer}
-          />
+            showMap={this.state.showMap}
+            setShowMap={(show) => this.setState({ showMap: show })}
+            dealersHeight={this.state.dealersHeight}
+            loading={this.state.loading} />
         </div>
-        <DealerMap
-          googleMapsApiKey={this.props.googleMapsApiKey}
-          dealers={this.state.dealers}
-          selectDealer={selectDealer}
-          activeDealer={this.state.activeDealer}
-          handleActiveDealer={this.handleActiveDealer}
-          showMap={this.state.showMap}
-          setShowMap={(show) => this.setState({ showMap: show })}
-          dealersHeight={this.state.dealersHeight}
-          loading={this.state.loading}
-          announcement={this.props.announcement}
-          showToast={this.state.showToast}
-          hideToast={this.hideToast} />
       </div>
     );
   }
