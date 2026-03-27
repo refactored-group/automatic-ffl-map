@@ -5,10 +5,8 @@ export const handleSelect = (dealer: any, selectDealer: any) => {
 
   selectDealer({
     id: dealer.id,
-    firstName: dealer.business_name,
-    lastName: dealer.license,
     phone: formattedDealerPhoneNumber,
-    company: `${dealer.business_name} - ${dealer.license}`,
+    company: dealer.business_name,
     address1: dealer.premise_street,
     address2: '',
     addressFormatted: `${dealer.business_name} | ${dealer.license}<br/>${formattedDealerPhoneNumber}<br/>${dealer.premise_street}<br/>${dealer.premise_city}, ${dealer.premise_state} ${dealer.premise_zip} / United States`,

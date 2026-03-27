@@ -74,10 +74,12 @@ This app runs as an iframe embedded in parent checkout apps. When a dealer is se
 **The `handleSelect` function manually maps dealer fields - it does not pass through the raw API response.** If the backend API adds new fields that parent apps need (e.g., `uuid` for certificate URLs), you MUST add them to `handleSelect`.
 
 Current fields sent to parent:
-- `id`, `firstName`, `lastName`, `phone`, `company`
+- `id`, `phone`, `company`
 - `address1`, `address2`, `addressFormatted`, `city`, `stateOrProvinceCode`, `postalCode`
 - `countryCode`, `localizedCountry`, `shouldSaveAddress`
 - `fflID`, `uuid`
+
+**Note on customer name:** The dealer payload intentionally does NOT include `firstName`/`lastName`. The customer's name is sourced by each consumer (BC checkout-js fork, WC plugin, BC drop-in `public/js/bigcommerce.js`, Magento, Shopify) from their own platform state — the customer's billing/account record. This produces the correct shipping label: `<customer name> c/o <dealer business name>` rather than overloading the customer's name fields with the dealer's identity. The `company` field carries the dealer's `business_name` only (no license suffix); the license is available separately as `fflID`.
 
 ### Styling
 
