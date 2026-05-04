@@ -8,6 +8,7 @@ export interface DealerMapProps {
   setShowMap: (show: boolean) => void;
   dealersHeight: number;
   loading: boolean;
+  appendFflToCompanyName?: boolean;
 }
 
 interface Dealer {
@@ -30,6 +31,7 @@ export interface DealerCardProps {
   handleActiveDealer: (dealer: Dealer) => void;
   setActiveDealer: Dealer;
   selectDealer: (dealer: Dealer) => void;
+  appendFflToCompanyName?: boolean;
 }
 
 export interface DealerListProps {
@@ -41,6 +43,7 @@ export interface DealerListProps {
   activeDealer: any;
   handleActiveDealer: (dealer: any) => void;
   selectDealer: (dealer: any) => void;
+  appendFflToCompanyName?: boolean;
 }
 
 interface Fee {

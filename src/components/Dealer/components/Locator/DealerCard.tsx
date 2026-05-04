@@ -7,7 +7,7 @@ import { DealerCardProps } from './types';
 import { handleSelect } from '../LocatorMap/utils';
 
 export default function DealerCard(props: DealerCardProps): JSX.Element {
-  const { dealer, index, handleActiveDealer, setActiveDealer, selectDealer } = props;
+  const { dealer, index, handleActiveDealer, setActiveDealer, selectDealer, appendFflToCompanyName } = props;
   let isActive = dealer === setActiveDealer;
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -65,7 +65,7 @@ export default function DealerCard(props: DealerCardProps): JSX.Element {
             <div className='h-12 flex items-center justify-center overflow-hidden mt-1'>
               <button
                 className={`relative px-4 py-2 rounded block w-full ${dealer.preferred ? 'bg-secondary' : 'bg-primary hover:bg-hover'}`}
-                onClick={(e) => { e.stopPropagation(); handleSelect(dealer, selectDealer); }}>
+                onClick={(e) => { e.stopPropagation(); handleSelect(dealer, selectDealer, { appendFflToCompanyName }); }}>
                 <span className={`absolute inset-0 rounded ${dealer.preferred ? 'bg-secondary' : 'bg-primary hover:bg-hover'}`}></span>
                 <span className="relative font-bold text-white">SELECT</span>
               </button>

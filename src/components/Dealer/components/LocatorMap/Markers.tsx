@@ -17,7 +17,7 @@ const createSvgMarker = (dealer: DealerProps) => {
   };
 };
 
-const Markers = ({ dealers, prevDealersRef, state, setState, selectDealer, setActiveDealer, showMap, activeDealer}: MarkersProps) => {
+const Markers = ({ dealers, prevDealersRef, state, setState, selectDealer, setActiveDealer, showMap, activeDealer, appendFflToCompanyName }: MarkersProps) => {
   const map = useMap();
 
   const fitMapToBounds = (map: google.maps.Map, dealers: DealerProps[], prevDealersRef: React.MutableRefObject<any[]>) => {
@@ -98,7 +98,7 @@ const Markers = ({ dealers, prevDealersRef, state, setState, selectDealer, setAc
                 <div className='h-12 flex items-center justify-center overflow-hidden'>
                   <button
                     className={`relative px-4 py-2 rounded block w-full ${state.activeDealer.preferred ? 'bg-secondary' : 'bg-primary hover:bg-hover'}`}
-                    onClick={() => handleSelect(state.activeDealer, selectDealer)}>
+                    onClick={() => handleSelect(state.activeDealer, selectDealer, { appendFflToCompanyName })}>
                     <span className={`absolute inset-0 rounded ${state.activeDealer.preferred ? 'bg-secondary' : 'bg-primary hover:bg-hover'}`}></span>
                     <span className="relative z-10 font-bold text-white">SELECT</span>
                   </button>

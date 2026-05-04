@@ -1,12 +1,19 @@
 import formatPhoneNumber from './../../PhoneNumberFormatter';
 
-export const handleSelect = (dealer: any, selectDealer: any) => {
+export const handleSelect = (
+  dealer: any,
+  selectDealer: any,
+  options: { appendFflToCompanyName?: boolean } = {},
+) => {
   const formattedDealerPhoneNumber = formatPhoneNumber({ phoneNumber: dealer.phone_number });
+  const company = options.appendFflToCompanyName
+    ? `${dealer.business_name} - ${dealer.license}`
+    : dealer.business_name;
 
   selectDealer({
     id: dealer.id,
     phone: formattedDealerPhoneNumber,
-    company: dealer.business_name,
+    company,
     address1: dealer.premise_street,
     address2: '',
     addressFormatted: `${dealer.business_name} | ${dealer.license}<br/>${formattedDealerPhoneNumber}<br/>${dealer.premise_street}<br/>${dealer.premise_city}, ${dealer.premise_state} ${dealer.premise_zip} / United States`,

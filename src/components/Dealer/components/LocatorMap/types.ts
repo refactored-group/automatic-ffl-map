@@ -5,6 +5,7 @@ export interface LocatorMapProps {
   setActiveDealer: (dealer: any) => void;
   showMap: boolean;
   activeDealer: any;
+  appendFflToCompanyName?: boolean;
 }
 
 export interface MarkersProps {
@@ -16,6 +17,7 @@ export interface MarkersProps {
   setActiveDealer: any;
   showMap: any;
   activeDealer: any;
+  appendFflToCompanyName?: boolean;
 }
 
 export interface DealerProps {

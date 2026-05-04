@@ -41,6 +41,7 @@ export default class Locator extends React.PureComponent<LocatorProps, LocatorSt
       activeDealer: null,
       showMap: false,
       dealersHeight: 0,
+      appendFflToCompanyName: false,
     };
 
     this.dealersRef = React.createRef();
@@ -106,6 +107,7 @@ export default class Locator extends React.PureComponent<LocatorProps, LocatorSt
     })
     .then(res => res.json())
     .then(data => {
+      this.setState({ appendFflToCompanyName: !!data.append_ffl_to_company_name });
       if (data.announcement) {
         this.setState({ announcement: data.announcement }, () => {
           this.updateDealersHeight();
@@ -147,6 +149,7 @@ export default class Locator extends React.PureComponent<LocatorProps, LocatorSt
               activeDealer={this.state.activeDealer}
               handleActiveDealer={this.handleActiveDealer}
               selectDealer={selectDealer}
+              appendFflToCompanyName={this.state.appendFflToCompanyName}
             />
           </div>
           <DealerMap
@@ -158,7 +161,8 @@ export default class Locator extends React.PureComponent<LocatorProps, LocatorSt
             showMap={this.state.showMap}
             setShowMap={(show) => this.setState({ showMap: show })}
             dealersHeight={this.state.dealersHeight}
-            loading={this.state.loading} />
+            loading={this.state.loading}
+            appendFflToCompanyName={this.state.appendFflToCompanyName} />
         </div>
       </div>
     );

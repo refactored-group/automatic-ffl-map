@@ -5,7 +5,7 @@ import { mapConfigs } from './constants';
 import { LocatorMapProps } from './types';
 import formatPhoneNumber from '../../PhoneNumberFormatter'
 
-const LocatorMap = ({ apiKey, dealers, selectDealer, setActiveDealer, activeDealer, showMap }: LocatorMapProps) => {
+const LocatorMap = ({ apiKey, dealers, selectDealer, setActiveDealer, activeDealer, showMap, appendFflToCompanyName }: LocatorMapProps) => {
   const [state, setState] = useState({
     activeMarker: null,
     activeDealer: '',
@@ -50,6 +50,7 @@ const LocatorMap = ({ apiKey, dealers, selectDealer, setActiveDealer, activeDeal
           setActiveDealer={setActiveDealer}
           showMap={showMap}
           activeDealer={activeDealer}
+          appendFflToCompanyName={appendFflToCompanyName}
         />
       </Map>
     </APIProvider>

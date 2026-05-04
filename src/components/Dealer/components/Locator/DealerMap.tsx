@@ -2,7 +2,7 @@ import React from 'react';
 import LocatorMap from './../LocatorMap/LocatorMap';
 import { DealerMapProps } from './types';
 
-const DealerMap: React.FC<DealerMapProps> = ({ googleMapsApiKey, dealers, selectDealer, activeDealer, handleActiveDealer, showMap, setShowMap, dealersHeight, loading }) => {
+const DealerMap: React.FC<DealerMapProps> = ({ googleMapsApiKey, dealers, selectDealer, activeDealer, handleActiveDealer, showMap, setShowMap, dealersHeight, loading, appendFflToCompanyName }) => {
   return (
     <div id="dealersMap" className={`absolute lg:static w-full bottom-0 lg:flex-1 transition-all duration-200 locator-modal-map`} style={{ height: showMap ? `${dealersHeight + 42}px` : "42px" }}>
       <div className="lg:hidden h-12 flex items-center justify-center font-bold bg-hover text-white cursor-pointer" onClick={() => setShowMap(!showMap)}>
@@ -26,6 +26,7 @@ const DealerMap: React.FC<DealerMapProps> = ({ googleMapsApiKey, dealers, select
           setActiveDealer={handleActiveDealer}
           activeDealer={activeDealer}
           showMap={showMap}
+          appendFflToCompanyName={appendFflToCompanyName}
         />
       </div>
     </div>
