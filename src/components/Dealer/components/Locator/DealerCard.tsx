@@ -51,6 +51,9 @@ export default function DealerCard(props: DealerCardProps): JSX.Element {
             {dealer.labels.some(label => label === "recent_activity") &&
               <span className="tag recent">Recent Activity</span>
             }
+            {dealer.labels.some(label => label === "residential") &&
+              <span className="tag residential">Residential Address</span>
+            }
             {dealer.uuid &&
               <span className="tag cert-on-file" title="Certificate on file">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
