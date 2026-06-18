@@ -16,16 +16,16 @@ const App = () => {
 
   const urlParams = new URLSearchParams(window.location.search);
   const storeHash = urlParams.get('store_hash');
-  const googleMapsApiKey = urlParams.get('maps_api_key');
+  const googleMapsApiKey = urlParams.get('maps_api_key') || process.env.REACT_APP_GOOGLE_MAPS_KEY || '';
   const platform = urlParams.get('platform');
 
-  const validPlatforms = ['BigCommerce', 'WooCommerce'];
+  const validPlatforms = ['BigCommerce', 'WooCommerce', 'Shopify'];
   if (!storeHash || !platform || !validPlatforms.includes(platform)) {
     return <p>Unable to load the Automatic FFL Dealers. Please review your settings or contact support.</p>
   }
 
-  if (platform !== 'BigCommerce' && !googleMapsApiKey) {
-      return <p>The Google Maps API is missing. Please check your integration settings or ensure the API is properly configured.</p>
+  if (!googleMapsApiKey) {
+    return <p>The Google Maps API is missing. Please check your integration settings or ensure the API is properly configured.</p>
   }
 
   return (

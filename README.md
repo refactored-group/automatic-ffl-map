@@ -8,6 +8,7 @@ You'll need to set your environment variables before using this project.
 
 `FFL_STORE_ENDPOINT` = FFL backend endpoint to get the store config
 `FFL_IFRAME_URL` = React iframe URL
+`REACT_APP_GOOGLE_MAPS_KEY` = Browser Google Maps API key bundled into the hosted dealer map
 
 ## Available Scripts
 
