@@ -46,4 +46,30 @@ describe('handleSelect - company field', () => {
     const payload = selectDealer.mock.calls[0][0];
     expect(payload.addressFormatted).toContain('ACME Guns | 1-23-456');
   });
+
+  it('passes through the AutoFFL-resolved shipping recipient', () => {
+    const selectDealer = jest.fn();
+    const dealer = {
+      ...dealerFixture(),
+      shipping_recipient_first_name: 'FFL',
+      shipping_recipient_last_name: 'Receiving',
+    };
+
+    handleSelect(dealer, selectDealer);
+
+    expect(selectDealer.mock.calls[0][0]).toMatchObject({
+      firstName: 'FFL',
+      lastName: 'Receiving',
+    });
+  });
+
+  it('does not invent shipping recipient names when AutoFFL omits them', () => {
+    const selectDealer = jest.fn();
+
+    handleSelect(dealerFixture(), selectDealer);
+
+    const payload = selectDealer.mock.calls[0][0];
+    expect(payload).not.toHaveProperty('firstName');
+    expect(payload).not.toHaveProperty('lastName');
+  });
 });

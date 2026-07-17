@@ -9,6 +9,13 @@ export const handleSelect = (
   const company = options.appendFflToCompanyName
     ? `${dealer.business_name} - ${dealer.license}`
     : dealer.business_name;
+  const shippingRecipient =
+    dealer.shipping_recipient_first_name && dealer.shipping_recipient_last_name
+      ? {
+          firstName: dealer.shipping_recipient_first_name,
+          lastName: dealer.shipping_recipient_last_name,
+        }
+      : {};
 
   selectDealer({
     id: dealer.id,
@@ -25,6 +32,7 @@ export const handleSelect = (
     countryCode: 'US',
     fflID: dealer.license,
     uuid: dealer.uuid,
+    ...shippingRecipient,
   });
 };
 
