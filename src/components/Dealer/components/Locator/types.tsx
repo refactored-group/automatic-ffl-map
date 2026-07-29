@@ -25,6 +25,7 @@ interface Dealer {
   uuid?: string;
   shipping_recipient_first_name?: string;
   shipping_recipient_last_name?: string;
+  shipping_company_name?: string;
 }
 
 export interface DealerCardProps {

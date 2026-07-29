@@ -27,6 +27,7 @@ export interface DealerProps {
   business_name: string;
   shipping_recipient_first_name?: string;
   shipping_recipient_last_name?: string;
+  shipping_company_name?: string;
   premise_street: string;
   phone_number: string;
   phone_number_formatted: string;

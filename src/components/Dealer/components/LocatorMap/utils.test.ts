@@ -38,6 +38,36 @@ describe('handleSelect - company field', () => {
     expect(selectDealer.mock.calls[0][0].company).toBe('ACME Guns - 1-23-456');
   });
 
+  it('uses the AutoFFL-resolved shipping company', () => {
+    const selectDealer = jest.fn();
+    const dealer = {
+      ...dealerFixture(),
+      shipping_company_name: 'Receiving Department',
+    };
+
+    handleSelect(dealer, selectDealer);
+
+    expect(selectDealer.mock.calls[0][0].company).toBe('Receiving Department');
+  });
+
+  it('keeps an intentionally omitted shipping company empty', () => {
+    const selectDealer = jest.fn();
+    const dealer = {
+      ...dealerFixture(),
+      shipping_recipient_first_name: 'ACME',
+      shipping_recipient_last_name: 'Guns',
+      shipping_company_name: '',
+    };
+
+    handleSelect(dealer, selectDealer, { appendFflToCompanyName: true });
+
+    expect(selectDealer.mock.calls[0][0]).toMatchObject({
+      firstName: 'ACME',
+      lastName: 'Guns',
+      company: '',
+    });
+  });
+
   it('does not change addressFormatted (license is already there)', () => {
     const selectDealer = jest.fn();
 

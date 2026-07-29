@@ -6,9 +6,11 @@ export const handleSelect = (
   options: { appendFflToCompanyName?: boolean } = {},
 ) => {
   const formattedDealerPhoneNumber = formatPhoneNumber({ phoneNumber: dealer.phone_number });
-  const company = options.appendFflToCompanyName
-    ? `${dealer.business_name} - ${dealer.license}`
-    : dealer.business_name;
+  const shippingCompanyName = dealer.shipping_company_name ?? dealer.business_name;
+  const company =
+    options.appendFflToCompanyName && shippingCompanyName
+      ? `${shippingCompanyName} - ${dealer.license}`
+      : shippingCompanyName;
   const shippingRecipient =
     dealer.shipping_recipient_first_name && dealer.shipping_recipient_last_name
       ? {
