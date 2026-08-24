@@ -28,7 +28,7 @@ export const handleSelect = (
     addressFormatted: `${dealer.business_name} | ${dealer.license}<br/>${formattedDealerPhoneNumber}<br/>${dealer.premise_street}<br/>${dealer.premise_city}, ${dealer.premise_state} ${dealer.premise_zip} / United States`,
     city: dealer.premise_city,
     stateOrProvinceCode: dealer.premise_state,
-    shouldSaveAddress: true,
+    shouldSaveAddress: false,
     postalCode: dealer.premise_zip,
     localizedCountry: 'United States',
     countryCode: 'US',

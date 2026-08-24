@@ -13,6 +13,14 @@ const dealerFixture = () => ({
 });
 
 describe('handleSelect - company field', () => {
+  it('never asks the consumer to save the selected dealer address', () => {
+    const selectDealer = jest.fn();
+
+    handleSelect(dealerFixture(), selectDealer);
+
+    expect(selectDealer.mock.calls[0][0].shouldSaveAddress).toBe(false);
+  });
+
   it('emits raw business_name as company by default', () => {
     const selectDealer = jest.fn();
 
