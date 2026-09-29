@@ -34,6 +34,7 @@ export const handleSelect = (
     countryCode: 'US',
     fflID: dealer.license,
     uuid: dealer.uuid,
+    expirationDate: dealer.license_expiration_date || null,
     ...shippingRecipient,
   });
 };

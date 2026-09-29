@@ -40,3 +40,12 @@ test('keeps the legacy maps_api_key query override', () => {
 
   expect(screen.getByTestId('locator')).toHaveTextContent('store-1:query-key');
 });
+
+test('allows Magento iframe loads with the hosted map key', () => {
+  process.env.REACT_APP_GOOGLE_MAPS_KEY = 'hosted-map-key';
+  window.history.pushState({}, '', '/?store_hash=magento-store&platform=Magento');
+
+  render(<App />);
+
+  expect(screen.getByTestId('locator')).toHaveTextContent('magento-store:hosted-map-key');
+});

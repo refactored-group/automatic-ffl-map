@@ -19,7 +19,7 @@ const App = () => {
   const googleMapsApiKey = urlParams.get('maps_api_key') || process.env.REACT_APP_GOOGLE_MAPS_KEY || '';
   const platform = urlParams.get('platform');
 
-  const validPlatforms = ['BigCommerce', 'WooCommerce', 'Shopify'];
+  const validPlatforms = ['BigCommerce', 'WooCommerce', 'Shopify', 'Magento'];
   if (!storeHash || !platform || !validPlatforms.includes(platform)) {
     return <p>Unable to load the Automatic FFL Dealers. Please review your settings or contact support.</p>
   }

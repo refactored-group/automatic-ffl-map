@@ -110,4 +110,14 @@ describe('handleSelect - company field', () => {
     expect(payload).not.toHaveProperty('firstName');
     expect(payload).not.toHaveProperty('lastName');
   });
+
+  it('passes through a reliable expiration date and leaves unavailable dates null', () => {
+    const selectDealer = jest.fn();
+
+    handleSelect({ ...dealerFixture(), license_expiration_date: '2029-01-01' }, selectDealer);
+    handleSelect(dealerFixture(), selectDealer);
+
+    expect(selectDealer.mock.calls[0][0].expirationDate).toBe('2029-01-01');
+    expect(selectDealer.mock.calls[1][0].expirationDate).toBeNull();
+  });
 });

@@ -23,6 +23,7 @@ interface Dealer {
   schedules: any;
   labels: Array<string>;
   uuid?: string;
+  license_expiration_date?: string | null;
   shipping_recipient_first_name?: string;
   shipping_recipient_last_name?: string;
   shipping_company_name?: string;
