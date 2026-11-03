@@ -13,6 +13,20 @@ const dealerFixture = () => ({
 });
 
 describe('handleSelect - company field', () => {
+	it.each(['DC', 'AS', 'GU', 'MP', 'PR', 'VI'])(
+		'emits %s as the existing US dealer province payload',
+		(stateOrProvinceCode) => {
+			const selectDealer = jest.fn();
+
+			handleSelect({ ...dealerFixture(), premise_state: stateOrProvinceCode }, selectDealer);
+
+			expect(selectDealer.mock.calls[0][0]).toMatchObject({
+				countryCode: 'US',
+				stateOrProvinceCode,
+			});
+		}
+	);
+
   it('never asks the consumer to save the selected dealer address', () => {
     const selectDealer = jest.fn();
 
